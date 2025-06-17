@@ -5,8 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RawCup - Urban Style Caps</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="styles.css">
-    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Optimizaciones para fluidez */
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .header {
+            will-change: background-color, box-shadow;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .product-card {
+            will-change: transform, opacity;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hero {
+            will-change: transform;
+        }
+        
+        .particle {
+            will-change: transform;
+        }
+        
+        /* Mejoras para la navegación */
+        section {
+            scroll-margin-top: 80px; /* Compensa la altura del header fijo */
+        }
+    </style>
 </head>
 <body>
     <!-- Particles Background -->
@@ -20,11 +53,11 @@
                     <img src="img/rawcup.png" alt="RawCup Logo">
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#home">Inicio</a></li>
-                    <li><a href="#products">Modelos</a></li>
-                    <li><a href="#contact">Contacto</a></li>
+                    <li><a href="#home" class="nav-link">Inicio</a></li>
+                    <li><a href="#products" class="nav-link">Modelos</a></li>
+                    <li><a href="#contact" class="nav-link">Contacto</a></li>
                 </ul>
-                <div class="mobile-menu">
+                <div class="mobile-menu" id="mobileMenu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -52,7 +85,7 @@
             <p class="section-subtitle">Cada diseño es una declaración de estilo. Encuentra la que habla tu lenguaje urbano.</p>
             
             <div class="products-grid">
-                <div class="product-card slide-up" data-product="Street Classic" data-emoji="🧢">
+                <div class="product-card" data-product="Street Classic" data-emoji="🧢">
                     <div class="product-image">🧢</div>
                     <div class="product-info">
                         <h3 class="product-name">Street Classic</h3>
@@ -61,7 +94,7 @@
                     </div>
                 </div>
 
-                <div class="product-card slide-up" data-product="Urban Edge" data-emoji="🎯">
+                <div class="product-card" data-product="Urban Edge" data-emoji="🎯">
                     <div class="product-image">🎯</div>
                     <div class="product-info">
                         <h3 class="product-name">Urban Edge</h3>
@@ -70,7 +103,7 @@
                     </div>
                 </div>
 
-                <div class="product-card slide-up" data-product="Raw Energy" data-emoji="⚡">
+                <div class="product-card" data-product="Raw Energy" data-emoji="⚡">
                     <div class="product-image">⚡</div>
                     <div class="product-info">
                         <h3 class="product-name">Raw Energy</h3>
@@ -79,7 +112,7 @@
                     </div>
                 </div>
 
-                <div class="product-card slide-up" data-product="Fire Edition" data-emoji="🔥">
+                <div class="product-card" data-product="Fire Edition" data-emoji="🔥">
                     <div class="product-image">🔥</div>
                     <div class="product-info">
                         <h3 class="product-name">Fire Edition</h3>
@@ -88,7 +121,7 @@
                     </div>
                 </div>
 
-                <div class="product-card slide-up" data-product="Diamond Raw" data-emoji="💎">
+                <div class="product-card" data-product="Diamond Raw" data-emoji="💎">
                     <div class="product-image">💎</div>
                     <div class="product-info">
                         <h3 class="product-name">Diamond Raw</h3>
@@ -97,7 +130,7 @@
                     </div>
                 </div>
 
-                <div class="product-card slide-up" data-product="Night Star" data-emoji="🌟">
+                <div class="product-card" data-product="Night Star" data-emoji="🌟">
                     <div class="product-image">🌟</div>
                     <div class="product-info">
                         <h3 class="product-name">Night Star</h3>
@@ -121,179 +154,262 @@
             </div>
         </div>
     </footer>
-<!-- Botón flotante de WhatsApp -->
-<div class="whatsapp-float" id="whatsappButton">
-    <img src="img/whatsapp.png" alt="WhatsApp">
-</div>
 
-<!-- Ventana emergente de WhatsApp -->
-<div class="whatsapp-popup" id="whatsappPopup">
-    <button class="whatsapp-close" id="closePopup">&times;</button>
-    <div class="whatsapp-popup-header">
-        <img src="img/rawcup.png" alt="RawCup Logo">
-        <h4>¡Bienvenido a RawCup!</h4>
+    <!-- Botón flotante de WhatsApp -->
+    <div class="whatsapp-float" id="whatsappButton">
+        <img src="img/whatsapp.png" alt="WhatsApp">
     </div>
-    <div class="whatsapp-popup-body">
-        <p>👋 ¡Hola! Somos RawCup, tu tienda de estilo urbano auténtico.</p>
-        <p>🧢 ¿Te interesa alguno de nuestros modelos? ¡Escríbenos y te ayudamos a encontrar tu estilo perfecto!</p>
-        <button class="whatsapp-start-chat" id="startWhatsAppChat">
-            💬 Iniciar Conversación
-        </button>
+
+    <!-- Ventana emergente de WhatsApp -->
+    <div class="whatsapp-popup" id="whatsappPopup">
+        <button class="whatsapp-close" id="closePopup">&times;</button>
+        <div class="whatsapp-popup-header">
+            <img src="img/rawcup.png" alt="RawCup Logo">
+            <h4>¡Bienvenido a RawCup!</h4>
+        </div>
+        <div class="whatsapp-popup-body">
+            <p>👋 ¡Hola! Somos RawCup, tu tienda de estilo urbano auténtico.</p>
+            <p>🧢 ¿Te interesa alguno de nuestros modelos? ¡Escríbenos y te ayudamos a encontrar tu estilo perfecto!</p>
+            <button class="whatsapp-start-chat" id="startWhatsAppChat">
+                💬 Iniciar Conversación
+            </button>
+        </div>
     </div>
-</div>
+
     <script>
-        // Function to send WhatsApp message
+        // Optimización de performance
+        let ticking = false;
+        let lastScrollY = 0;
+
+        // Función optimizada para WhatsApp
         function sendWhatsAppMessage(productName, emoji) {
-            const phoneNumber = '573058333263'; // Número de Colombia con código de país
+            const phoneNumber = '573058333263';
             const message = `${emoji} Hola! Me interesa la gorra ${productName}. ¿Podrías enviarme más información y precios?`;
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
             window.open(whatsappUrl, '_blank');
         }
 
-        // Add click event listeners to product cards
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const productName = this.getAttribute('data-product');
-                const emoji = this.getAttribute('data-emoji');
-                sendWhatsAppMessage(productName, emoji);
-            });
-        });
+        // Función para WhatsApp con mensaje de bienvenida
+        function sendWhatsAppWelcome() {
+            const phoneNumber = '573058333263';
+            const message = '👋 ¡Hola RawCup! Me interesa conocer más sobre sus gorras de estilo urbano. ¿Podrían ayudarme?';
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // Navegación suave mejorada
+        function smoothScrollTo(target) {
+            const element = document.querySelector(target);
+            if (element) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const elementPosition = element.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: elementPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Event listeners para navegación
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                const target = this.getAttribute('href');
+                smoothScrollTo(target);
             });
         });
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
+        // Event listeners para productos con debounce
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            const debouncedClick = debounce(() => {
+                const productName = card.getAttribute('data-product');
+                const emoji = card.getAttribute('data-emoji');
+                sendWhatsAppMessage(productName, emoji);
+            }, 300);
+            
+            card.addEventListener('click', debouncedClick);
+        });
+
+        // Scroll optimizado con RequestAnimationFrame
+        function updateOnScroll() {
+            const scrollY = window.scrollY;
             const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
+            const hero = document.querySelector('.hero');
+            
+            // Header effect
+            if (scrollY > 100) {
                 header.style.background = 'rgba(0, 0, 0, 0.95)';
                 header.style.boxShadow = '0 5px 40px rgba(0, 0, 0, 0.9)';
             } else {
                 header.style.background = 'rgba(0, 0, 0, 0.85)';
                 header.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.8)';
             }
-        });
+            
+            // Parallax optimizado
+            if (hero && scrollY < window.innerHeight) {
+                hero.style.transform = `translate3d(0, ${scrollY * 0.3}px, 0)`;
+            }
+            
+            lastScrollY = scrollY;
+            ticking = false;
+        }
 
-        // Intersection Observer for animations
+        function requestScrollUpdate() {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestScrollUpdate, { passive: true });
+
+        // Intersection Observer optimizado
         const observerOptions = {
-            threshold: 0.1,
+            threshold: [0, 0.1, 0.2],
             rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
                     entry.target.classList.add('slide-up');
+                    observer.unobserve(entry.target); // Deja de observar una vez animado
                 }
             });
         }, observerOptions);
 
-        // Observe product cards
-        document.querySelectorAll('.product-card').forEach(card => {
-            observer.observe(card);
-        });
+        // Observar elementos con delay
+        setTimeout(() => {
+            document.querySelectorAll('.product-card').forEach(card => {
+                observer.observe(card);
+            });
+        }, 100);
 
-        // Create particles
+        // Partículas optimizadas
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-
+            const particleCount = Math.min(30, Math.floor(window.innerWidth / 40)); // Menos partículas en móviles
+            
+            // Crear fragment para mejor performance
+            const fragment = document.createDocumentFragment();
+            
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 10 + 's';
                 particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                particlesContainer.appendChild(particle);
+                fragment.appendChild(particle);
             }
+            
+            particlesContainer.appendChild(fragment);
         }
 
-        // Initialize particles
-        createParticles();
+        // WhatsApp popup functionality
+        const whatsappButton = document.getElementById('whatsappButton');
+        const whatsappPopup = document.getElementById('whatsappPopup');
+        const closePopup = document.getElementById('closePopup');
+        const startChat = document.getElementById('startWhatsAppChat');
 
-        // Mobile menu toggle (placeholder for future implementation)
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            // Mobile menu functionality would go here
-            console.log('Mobile menu clicked');
+        whatsappButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            whatsappPopup.classList.toggle('show');
         });
 
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease-in-out';
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-        // Función para WhatsApp con mensaje de bienvenida
-function sendWhatsAppWelcome() {
-    const phoneNumber = '573058333263';
-    const message = '👋 ¡Hola RawCup! Me interesa conocer más sobre sus gorras de estilo urbano. ¿Podrían ayudarme?';
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
-}
-
-// Variables para el popup
-const whatsappButton = document.getElementById('whatsappButton');
-const whatsappPopup = document.getElementById('whatsappPopup');
-const closePopup = document.getElementById('closePopup');
-const startChat = document.getElementById('startWhatsAppChat');
-
-// Mostrar/ocultar popup
-whatsappButton.addEventListener('click', function() {
-    whatsappPopup.classList.toggle('show');
-});
-
-// Cerrar popup
-closePopup.addEventListener('click', function() {
-    whatsappPopup.classList.remove('show');
-});
-
-// Iniciar chat de WhatsApp
-startChat.addEventListener('click', function() {
-    sendWhatsAppWelcome();
-    whatsappPopup.classList.remove('show');
-});
-
-// Cerrar popup al hacer clic fuera
-document.addEventListener('click', function(event) {
-    if (!whatsappPopup.contains(event.target) && !whatsappButton.contains(event.target)) {
-        whatsappPopup.classList.remove('show');
-    }
-});
-
-// Auto-mostrar popup después de 5 segundos
-setTimeout(function() {
-    whatsappPopup.classList.add('show');
-    // Auto-ocultar después de 8 segundos si no hay interacción
-    setTimeout(function() {
-        if (whatsappPopup.classList.contains('show')) {
+        closePopup.addEventListener('click', () => {
             whatsappPopup.classList.remove('show');
+        });
+
+        startChat.addEventListener('click', () => {
+            sendWhatsAppWelcome();
+            whatsappPopup.classList.remove('show');
+        });
+
+        // Cerrar popup al hacer clic fuera
+        document.addEventListener('click', (event) => {
+            if (!whatsappPopup.contains(event.target) && !whatsappButton.contains(event.target)) {
+                whatsappPopup.classList.remove('show');
+            }
+        });
+
+        // Inicialización optimizada
+        function init() {
+            // Crear partículas
+            createParticles();
+            
+            // Inicializar animaciones
+            document.body.style.opacity = '1';
+            
+            // Auto-mostrar popup después de 5 segundos
+            setTimeout(() => {
+                whatsappPopup.classList.add('show');
+                setTimeout(() => {
+                    if (whatsappPopup.classList.contains('show')) {
+                        whatsappPopup.classList.remove('show');
+                    }
+                }, 8000);
+            }, 5000);
         }
-    }, 8000);
-}, 5000);
+
+        // Cargar cuando el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+
+        // Preload crítico
+        window.addEventListener('load', () => {
+            // Precargar imágenes críticas si es necesario
+            const criticalImages = ['img/rawcup.png', 'img/whatsapp.png'];
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        });
+
+        // Mobile menu (placeholder mejorado)
+        document.getElementById('mobileMenu').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav-links').classList.toggle('mobile-active');
+        });
+
+        // Optimización para resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Recalcular partículas si es necesario
+                if (window.innerWidth !== lastWindowWidth) {
+                    const particles = document.querySelectorAll('.particle');
+                    const newCount = Math.min(30, Math.floor(window.innerWidth / 40));
+                    
+                    if (particles.length > newCount) {
+                        for (let i = newCount; i < particles.length; i++) {
+                            particles[i].remove();
+                        }
+                    }
+                    lastWindowWidth = window.innerWidth;
+                }
+            }, 250);
+        });
+
+        let lastWindowWidth = window.innerWidth;
     </script>
 </body>
 </html>
